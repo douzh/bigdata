@@ -2,3 +2,7 @@
 /crypto/bip32/.classpath
 /crypto/bip32/.settings
 /crypto/bip32/target
+/crypto/crypto-core-tools/.classpath
+/crypto/crypto-core-tools/.project
+/crypto/crypto-core-tools/.settings
+/crypto/crypto-core-tools/target
