@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.iteedu.crypto</groupId>
-	<artifactId>crypto-core-tool</artifactId>
+	<artifactId>crypto-core-tools</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>crypto-core-tool</name>
+	<name>crypto-core-tools</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
