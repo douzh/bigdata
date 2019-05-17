@@ -1,0 +1,27 @@
+# Tomcat
+server:
+    tomcat:
+        uri-encoding: UTF-8
+        max-threads: 1000
+        min-spare-threads: 30
+    port: 8084
+    connection-timeout: 5000
+    context-path: /
+
+spring:
+    # 环境 dev|test|pro
+    profiles:
+        active: dev
+
+    http:
+        multipart:
+            max-file-size: 100MB
+            max-request-size: 100MB
+            enabled: true
+    jackson:
+        time-zone: GMT+8
+        date-format: yyyy-MM-dd HH:mm:ss
+    resources: # 静态资源的路径
+        static-locations: classpath:/statics/,classpath:/views/
+
+
