@@ -1,0 +1,1 @@
+从开源项目hxyFrame中摘出来的，需要redis
