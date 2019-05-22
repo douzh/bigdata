@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>角色管理</title>
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/plugins/jqgrid/ui.jqgrid-bootstrap.css">
+<link rel="stylesheet" href="/plugins/ztree/css/metroStyle/metroStyle.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/plugins/layui/css/layui.css">
+<script src="/js/jquery.min.js"></script>
+<script src="/plugins/layer/layer.js"></script>
+<script src="/plugins/layui/layui.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/vue.min.js"></script>
+<script src="/plugins/jqgrid/grid.locale-cn.js"></script>
+<script src="/plugins/jqgrid/jquery.jqGrid.min.js"></script>
+<script src="/plugins/ztree/jquery.ztree.all.min.js"></script>
+<script src="/js/common.js"></script>
+<script src="/plugins/layer/mylayer.js"></script>
+
+</head>
+<body>
+<div id="rrapp" v-cloak>
+	<div v-show="showList">
+		<div class="grid-btn">
+			<div class="form-group col-sm-2">
+				<input class="form-control" v-model="q.roleName" @keyup.enter="query" placeholder="角色名称">
+			</div>
+			<button class="layui-btn" id="searchSubmit" v-on:click="query"><i class="layui-icon">&#xe615;</i>查 询</button>
+			
+				<button shiro:hasPermission="sys:role:update" class="layui-btn" v-on:click="add" type="button"><i class="layui-icon">&#xe61f;</i> 新 增</button>
+				<button shiro:hasPermission="sys:role:update" class="layui-btn layui-btn-normal" type="button" v-on:click="update"><i class="layui-icon">&#xe642;</i>编辑</button>
+				<button shiro:hasPermission="sys:role:delete" class="layui-btn layui-btn-danger" type="button" v-on:click="del"><i class="layui-icon">&#xe640;</i>禁用</button>
+			<button shiro:hasPermission="sys:role:enabled" class="layui-btn" type="button" v-on:click="enabled"><i class="layui-icon">&#xe640;</i>启用</button>
+		</div>
+	    <table id="jqGrid"></table>
+	    <div id="jqGridPager"></div>
+    </div>
+    
+    <div v-show="!showList" class="panel panel-default">
+		<div class="panel-heading">{{title}}</div>
+		<form class="form-horizontal">
+			<div class="form-group">
+			   	<div class="col-sm-2 control-label">角色名称</div>
+			   	<div class="col-sm-10">
+			      <input  class="form-control" v-model="role.name" placeholder="角色名称"/>
+			    </div>
+			</div>
+			<div class="form-group">
+			   	<div class="col-sm-2 control-label">备注</div>
+			   	<div class="col-sm-10">
+			      <input  class="form-control" v-model="role.remark" placeholder="备注"/>
+			    </div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-2 control-label">状态</div>
+				<label class="radio-inline">
+					<input type="radio" name="status" value="-1" v-model="role.status"/> 禁用
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="status" value="0" v-model="role.status"/> 正常
+				</label>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-6 ">
+					<div class="col-sm-6 control-label">菜单授权:</div>
+					<div class="col-sm-6">
+						<ul id="menuTree" class="ztree"></ul>
+					</div>
+				</div>
+				<div class="form-group col-md-6 ">
+					<div class="col-sm-6 control-label">数据授权:</div>
+					<div class="col-sm-6">
+						<ul id="organTree" class="ztree"></ul>
+					</div>
+				</div>
+
+			</div>
+			<div class="form-group" style="margin-left: 30%;margin-top: 30px;">
+				<button shiro:hasPermission="sys:role:update" class="layui-btn" type="button" v-on:click="saveOrUpdate" >确定</button>
+				<button class="layui-btn layui-btn-warm" type="button" v-on:click="reload" style="margin-left: 30px">返回</button>
+			</div>
+		</form>
+	</div>
+</div>
+   
+<script src="/js/sys/role.js"></script>
+</body>
+</html>
